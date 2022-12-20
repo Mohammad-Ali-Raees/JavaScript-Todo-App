@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/f597c42206.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./stylde.css">
+
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row justify-content-center ">
+      <div class="col-md-6">
+
+        <div class="box">
+
+
+          <h1 class="text-center">TODO LIST APP</h1>
+          <input type="text" id="name" autocomplete=off placeholder="Enter Any Word Or Number"><span
+            class="fas fa-plus field-icon"></span>
+
+          <ul>
+            <li><span class="fas fa-trash-alt"></span> <span class='fas fa-edit'></span>  &nbsp; Harry Potter</li>
+            <li><span class="fas fa-trash-alt"></span> <span class='fas fa-edit'></span> &nbsp; Fast And Furious</li>
+            <li><span class="fas fa-trash-alt"></span> <span class='fas fa-edit'></span> &nbsp; KungFu Panda</li>
+            <li><span class="fas fa-trash-alt"></span> <span class='fas fa-edit'></span> &nbsp; Fist Of Fury</li>
+            <li><span class="fas fa-trash-alt"></span> <span class='fas fa-edit'></span> &nbsp; Avengers End Game</li>
+            <li><span class="fas fa-trash-alt"  ></span> <span class='fas fa-edit'></span> &nbsp; Fury</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+
+  <script>
+
+
+
+    $(document).ready(function () {
+
+      $('.fa-plus').on('click', function () {
+        var ad = $('#name').val()
+        if (ad == "") {
+          alert("Enter Some text")
+          return false
+        } else {
+
+          $('ul').append(`<li class='hh'><span class='fas fa-trash-alt'></span>&nbsp;<i class='fas fa-edit' onclick="edits(this)"  ></i> ${ad} </li>`);
+          $('input').val("");
+          var avalue = [];
+          avalue.push(ad)
+          localStorage.setItem("ToDo Values", JSON.stringify(avalue))
+          console.log(ad);
+          return true;
+        }
+
+      })
+      $('ul').on('click', '.fa-edit', function () {
+        $(this).parent().remove();
+        var get = $(this).parent().text();
+        $('#name').val(get);
+        // alert(get);
+      })
+      $('ul').on('click', '.fa-trash-alt', function () {
+        $(this).parent().remove();
+        // $(this).remove();
+      })
+
+
+
+    })
+
+
+    // if (localStorage.getItem("Names")) {
+    //   var data1 = localStorage.getItem("Names")
+
+    //   $('ul').html(data1)
+    // }
+  </script>
+
+</body>
+
+</html>
